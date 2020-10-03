@@ -69,7 +69,9 @@ Material:
     - _Cutoff: 0.5
     - _DstBlend: 0
     - _EnvironmentReflections: 1
+    - _FadeEnd: 100
     - _FadeLength: 10
+    - _FadeStart: 70
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
