@@ -2,7 +2,7 @@ using System;
 using UnityEngine.InputSystem;
 using UnityEngine;
 
-namespace DefaultNamespace {
+namespace Asteroids3D {
     [RequireComponent(typeof(Rigidbody))]
     public class PlayerMovement : MonoBehaviour {
 
@@ -25,7 +25,7 @@ namespace DefaultNamespace {
                 enabled = false;
             }
 
-            //Cursor.lockState = CursorLockMode.Locked;
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
         public void OnMovement(InputAction.CallbackContext context) {
@@ -52,23 +52,15 @@ namespace DefaultNamespace {
 
 
         private void FixedUpdate() {
-            rb.velocity = (transform.forward * inputMovement.z 
-                          + transform.right * inputMovement.x
-                          + transform.up * inputMovement.y
-                          ) * speed;
+                
+            rb.velocity = transform.TransformDirection(inputMovement) * speed;
 
-            
             transform.Rotate(inputRotation.z * rotationSpeed * Vector3.forward, Space.Self);
             transform.Rotate(inputRotation.x * rotationMouseSpeed * Vector3.right, Space.Self);
             transform.Rotate(inputRotation.y * rotationMouseSpeed * Vector3.up, Space.Self);
-            
-            // rb.angularVelocity = (
-            //     Quaternion.AngleAxis(inputRotation.z * rotationSpeed, transform.forward)
-            //     * Quaternion.AngleAxis(inputRotation.x * rotationMouseSpeed, transform.right)
-            //     * Quaternion.AngleAxis(inputRotation.y * rotationMouseSpeed, transform.up)
-            //     ).eulerAngles;
 
         }
+
     }
 
 }
